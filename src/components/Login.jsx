@@ -2,6 +2,8 @@ import React from 'react'
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
+
 
 export default function Login() {
     const navigate = useNavigate();
@@ -30,7 +32,7 @@ const handlesubmit= async(e)=> {
     setLoading(true);
 
       try{
-        const response = await axios.post("https://complaintmonitoringbackend.onrender.com/login",formData)
+        const response = await axios.post("API_URL/login",formData)
         setSuccess("Login successful");
        //
        localStorage.setItem("token", response.data.token);

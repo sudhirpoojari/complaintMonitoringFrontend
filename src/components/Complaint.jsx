@@ -67,7 +67,7 @@ export default function Complaint() {
     if (!state) return;
     
     try {
-      const res = await fetch(`https://complaintmonitoringbackend.onrender.com/districts/${state}`);
+      const res = await fetch(`API_URL/districts/${state}`);
       if (res.ok) {
         const data = await res.json();
         setDistricts(data);
@@ -86,7 +86,7 @@ export default function Complaint() {
     if (!district || !formData.state) return;
     
     try {
-      const res = await fetch(`https://complaintmonitoringbackend.onrender.com/taluks/${formData.state}/${district}`);
+      const res = await fetch(`API_URL/taluks/${formData.state}/${district}`);
       if (res.ok) {
         const data = await res.json();
         setTaluks(data);
@@ -104,7 +104,7 @@ export default function Complaint() {
     if (!taluk || !formData.state || !formData.district) return;
     
     try {
-      const res = await fetch(`https://complaintmonitoringbackend.onrender.com/gp/${formData.state}/${formData.district}/${taluk}`);
+      const res = await fetch(`API_URL/gp/${formData.state}/${formData.district}/${taluk}`);
       if (res.ok) {
         const data = await res.json();
         setGps(data);
@@ -125,7 +125,7 @@ export default function Complaint() {
 
   const fetchStates = async () => {
     try {
-      const response = await fetch("https://complaintmonitoringbackend.onrender.com/states");
+      const response = await fetch("API_URL/states");
       if (response.ok) {
         const data = await response.json();
         setStates(data);
@@ -137,7 +137,7 @@ export default function Complaint() {
 
   const fetchcategory = async () => {
     try {
-      const response = await fetch("https://complaintmonitoringbackend.onrender.com/getcategory");
+      const response = await fetch("API_URL/getcategory");
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }
@@ -220,7 +220,7 @@ export default function Complaint() {
             return;
           }
 
-          const response = await fetch("https://complaintmonitoringbackend.onrender.com/saveComplaint", {
+          const response = await fetch("API_URL/saveComplaint", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

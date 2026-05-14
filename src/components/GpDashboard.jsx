@@ -5,6 +5,7 @@ import CloseComplaintModal from "./CloseComplaintModal";
 import CompleteComplaintModal from "./CompleteComplaintModal";
 import ImageModal from "./ImageModal";
 import ActivityTimeline from "./ActivityTimeline";
+import API_URL from "../config/api";
 
 // --- Reusable SVG Icons ---
 const Icons = {
@@ -46,8 +47,8 @@ export default function GpDashboard() {
 
       setLoading(true);
       const [compRes, statsRes] = await Promise.all([
-        axios.get("https://complaintmonitoringbackend.onrender.com/complaint/gp", { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get("https://complaintmonitoringbackend.onrender.com/complaint/gp/stats", { headers: { Authorization: `Bearer ${token}` } })
+        axios.get("API_URL/complaint/gp", { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get("API_URL/complaint/gp/stats", { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       setComplaints(compRes.data);
@@ -88,7 +89,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/status/${id}`,
+        `API_URL/complaint/status/${id}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -111,7 +112,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/${closeModal.complaintId}/close`,
+        `API_URL/complaint/${closeModal.complaintId}/close`,
         formData,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
       );
@@ -135,7 +136,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/${completeModal.complaintId}/complete`,
+        `API_URL/complaint/${completeModal.complaintId}/complete`,
         formData,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
       );

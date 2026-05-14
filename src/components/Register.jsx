@@ -3,7 +3,10 @@ import React from 'react'
 import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../config/api";
+
 function Register() {
+
 
 const [formData,setFormData] = React.useState({
   name:"",
@@ -40,7 +43,7 @@ const handlesubmit = async (e) => {
   e.preventDefault();
   try{
 
-    const response = await axios.post("https://complaintmonitoringbackend.onrender.com/register",formData)  
+    const response = await axios.post("API_URL/register",formData)  
     alert("Registration successful");
     //alert(response.error || response.data.message || "Registration successful"  );
 
@@ -57,7 +60,7 @@ const handlesubmit = async (e) => {
 
  // Load states
   useEffect(() => {
-    axios.get("https://complaintmonitoringbackend.onrender.com/states")
+    axios.get("API_URL/states")
       .then(res => setStates(res.data));
   }, []);
 
@@ -76,7 +79,7 @@ const handlesubmit = async (e) => {
     setError("");
 
     try {
-      const res = await axios.get(`https://complaintmonitoringbackend.onrender.com/districts/${state}`);
+      const res = await axios.get(`API_URL/districts/${state}`);
       setDistricts(res.data);
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -101,7 +104,7 @@ const handlesubmit = async (e) => {
     }
 
     try {
-      const res = await axios.get(`https://complaintmonitoringbackend.onrender.com/taluks/${selectedState}/${district}`);
+      const res = await axios.get(`API_URL/taluks/${selectedState}/${district}`);
       setTaluks(res.data);
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -127,7 +130,7 @@ const handlesubmit = async (e) => {
 
     try {
       const res = await axios.get(
-        `https://complaintmonitoringbackend.onrender.com/gp/${selectedState}/${selectedDistrict}/${taluk}`
+        `API_URL/gp/${selectedState}/${selectedDistrict}/${taluk}`
       );
       setGps(res.data);
     } catch (error) {

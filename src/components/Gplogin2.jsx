@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
 
 export default function Gplogin2() {
   const [data, setData] = useState({ gp_email: "", gp_password: "" });
@@ -15,12 +16,12 @@ export default function Gplogin2() {
     e.preventDefault();
 
     const res = await axios.post(
-      "http://localhost:5000/api/gp/login",
+      "API_URL/api/gp/login",
       data
     );
 
     localStorage.setItem("token", res.data.token);
-    nav("/dashboard");
+    nav("API_URL/dashboard");
   };
 
   return (
