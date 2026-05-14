@@ -18,8 +18,8 @@ export default function Dashboard() {
       try {
         // Fetch logic using the globally configured axios interceptor (with auth token)
         const [statsRes, complaintsRes] = await Promise.all([
-          axios.get("http://localhost:3000/complaint-stats"),
-          axios.get("http://localhost:3000/complaints")
+          axios.get("https://complaintmonitoringbackend.onrender.com/complaint-stats"),
+          axios.get("https://complaintmonitoringbackend.onrender.com/complaints")
         ]);
         
         setStats(statsRes.data);
@@ -40,7 +40,7 @@ export default function Dashboard() {
       else setDownloadingExcel(true);
 
       // responseType: 'blob' is crucial for downloading files via Axios
-      const response = await axios.get(`http://localhost:3000/complaints/export/${type}`, {
+      const response = await axios.get(`https://complaintmonitoringbackend.onrender.com/complaints/export/${type}`, {
         responseType: 'blob'
       });
 

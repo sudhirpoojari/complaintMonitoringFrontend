@@ -40,7 +40,7 @@ const handlesubmit = async (e) => {
   e.preventDefault();
   try{
 
-    const response = await axios.post("http://localhost:3000/register",formData)  
+    const response = await axios.post("https://complaintmonitoringbackend.onrender.com/register",formData)  
     alert("Registration successful");
     //alert(response.error || response.data.message || "Registration successful"  );
 
@@ -57,7 +57,7 @@ const handlesubmit = async (e) => {
 
  // Load states
   useEffect(() => {
-    axios.get("http://localhost:3000/states")
+    axios.get("https://complaintmonitoringbackend.onrender.com/states")
       .then(res => setStates(res.data));
   }, []);
 
@@ -76,7 +76,7 @@ const handlesubmit = async (e) => {
     setError("");
 
     try {
-      const res = await axios.get(`http://localhost:3000/districts/${state}`);
+      const res = await axios.get(`https://complaintmonitoringbackend.onrender.com/districts/${state}`);
       setDistricts(res.data);
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -101,7 +101,7 @@ const handlesubmit = async (e) => {
     }
 
     try {
-      const res = await axios.get(`http://localhost:3000/taluks/${selectedState}/${district}`);
+      const res = await axios.get(`https://complaintmonitoringbackend.onrender.com/taluks/${selectedState}/${district}`);
       setTaluks(res.data);
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -127,7 +127,7 @@ const handlesubmit = async (e) => {
 
     try {
       const res = await axios.get(
-        `http://localhost:3000/gp/${selectedState}/${selectedDistrict}/${taluk}`
+        `https://complaintmonitoringbackend.onrender.com/gp/${selectedState}/${selectedDistrict}/${taluk}`
       );
       setGps(res.data);
     } catch (error) {
