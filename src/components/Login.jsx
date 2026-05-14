@@ -27,9 +27,10 @@ const handlechange = (e) => {
 const handlesubmit= async(e)=> {
     e.preventDefault();
   
+    setLoading(true);
 
       try{
-        const response = await axios.post("http://localhost:3000/login",formData)
+        const response = await axios.post("https://complaintmonitoringbackend.onrender.com/login",formData)
         setSuccess("Login successful");
        //
        localStorage.setItem("token", response.data.token);
@@ -45,6 +46,8 @@ const handlesubmit= async(e)=> {
 
        // console.error(error.response?.data || error.message);
         setTimeout(() => setError(""), 5000); // Clear error after 5 seconds
+    } finally {
+        setLoading(false);
     }
    
 }

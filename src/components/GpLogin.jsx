@@ -25,7 +25,7 @@ const handlesubmit= async(e)=> {
     setLoading(true);
     try{ 
         console.log("GP login send:", formData);
-        const response = await axios.post("http://localhost:3000/gp/login", formData);
+        const response = await axios.post("https://complaintmonitoringbackend.onrender.com/gp/login", formData);
         const data = response.data;
         console.log("GP login response:", data);
         
