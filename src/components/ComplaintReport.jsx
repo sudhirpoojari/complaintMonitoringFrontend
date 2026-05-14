@@ -33,7 +33,7 @@ export default function ComplaintReport() {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get("https://complaintmonitoringbackend.onrender.com/complaint-stats");
+      const response = await axios.get("http://localhost:3000/complaint-stats");
       setStats(response.data);
     } catch (err) {
       setError("Error fetching statistics: " + (err.response?.data?.message || err.message));
@@ -43,7 +43,7 @@ export default function ComplaintReport() {
   const fetchComplaints = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://complaintmonitoringbackend.onrender.com/complaints");
+      const response = await axios.get("http://localhost:3000/complaints");
       setComplaints(response.data);
     } catch (err) {
       setError("Error fetching complaints: " + (err.response?.data?.message || err.message));

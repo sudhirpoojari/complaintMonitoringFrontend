@@ -46,8 +46,8 @@ export default function GpDashboard() {
 
       setLoading(true);
       const [compRes, statsRes] = await Promise.all([
-        axios.get("https://complaintmonitoringbackend.onrender.com/complaint/gp", { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get("https://complaintmonitoringbackend.onrender.com/complaint/gp/stats", { headers: { Authorization: `Bearer ${token}` } })
+        axios.get("http://localhost:3000/complaint/gp", { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get("http://localhost:3000/complaint/gp/stats", { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       setComplaints(compRes.data);
@@ -88,7 +88,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/status/${id}`,
+        `http://localhost:3000/complaint/status/${id}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -111,7 +111,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/${closeModal.complaintId}/close`,
+        `http://localhost:3000/complaint/${closeModal.complaintId}/close`,
         formData,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
       );
@@ -135,7 +135,7 @@ export default function GpDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://complaintmonitoringbackend.onrender.com/complaint/${completeModal.complaintId}/complete`,
+        `http://localhost:3000/complaint/${completeModal.complaintId}/complete`,
         formData,
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
       );
