@@ -16,12 +16,12 @@ export default function Gplogin2() {
     e.preventDefault();
 
     const res = await axios.post(
-      "API_URL/api/gp/login",
+      `${API_URL}/api/gp/login`,
       data
     );
 
     localStorage.setItem("token", res.data.token);
-    nav("API_URL/dashboard");
+    nav("/dashboard");
   };
 
   return (

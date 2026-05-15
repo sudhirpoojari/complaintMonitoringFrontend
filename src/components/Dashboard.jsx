@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ImageModal from "./ImageModal";
-import API_URL from '../config/api';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({ pending: 0, actionTaken: 0, completed: 0, closed: 0, total: 0 });
@@ -19,8 +18,8 @@ export default function Dashboard() {
       try {
         // Fetch logic using the globally configured axios interceptor (with auth token)
         const [statsRes, complaintsRes] = await Promise.all([
-          axios.get("API_URL/complaint-stats"),
-          axios.get("API_URL/complaints")
+          axios.get("https://complaintmonitoringbackend.onrender.com/complaint-stats"),
+          axios.get("https://complaintmonitoringbackend.onrender.com/complaints")
         ]);
         
         setStats(statsRes.data);
@@ -41,7 +40,7 @@ export default function Dashboard() {
       else setDownloadingExcel(true);
 
       // responseType: 'blob' is crucial for downloading files via Axios
-      const response = await axios.get(`API_URL/complaints/export/${type}`, {
+      const response = await axios.get(`https://complaintmonitoringbackend.onrender.com/complaints/export/${type}`, {
         responseType: 'blob'
       });
 

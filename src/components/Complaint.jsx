@@ -1,6 +1,7 @@
 import React, { use } from 'react'
 import { useEffect } from "react";
 import { useState } from "react";
+import API_URL from "../config/api";
 
 export default function Complaint() {
 
@@ -67,7 +68,7 @@ export default function Complaint() {
     if (!state) return;
     
     try {
-      const res = await fetch(`API_URL/districts/${state}`);
+      const res = await fetch(`${API_URL}/districts/${state}`);
       if (res.ok) {
         const data = await res.json();
         setDistricts(data);
@@ -86,7 +87,7 @@ export default function Complaint() {
     if (!district || !formData.state) return;
     
     try {
-      const res = await fetch(`API_URL/taluks/${formData.state}/${district}`);
+      const res = await fetch(`${API_URL}/taluks/${formData.state}/${district}`);
       if (res.ok) {
         const data = await res.json();
         setTaluks(data);
@@ -104,7 +105,7 @@ export default function Complaint() {
     if (!taluk || !formData.state || !formData.district) return;
     
     try {
-      const res = await fetch(`API_URL/gp/${formData.state}/${formData.district}/${taluk}`);
+      const res = await fetch(`${API_URL}/gp/${formData.state}/${formData.district}/${taluk}`);
       if (res.ok) {
         const data = await res.json();
         setGps(data);
@@ -125,7 +126,7 @@ export default function Complaint() {
 
   const fetchStates = async () => {
     try {
-      const response = await fetch("API_URL/states");
+      const response = await fetch(`${API_URL}/states`);
       if (response.ok) {
         const data = await response.json();
         setStates(data);
@@ -137,7 +138,7 @@ export default function Complaint() {
 
   const fetchcategory = async () => {
     try {
-      const response = await fetch("API_URL/getcategory");
+      const response = await fetch(`${API_URL}/getcategory`);
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }
@@ -220,7 +221,7 @@ export default function Complaint() {
             return;
           }
 
-          const response = await fetch("API_URL/saveComplaint", {
+          const response = await fetch(`${API_URL}/saveComplaint`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

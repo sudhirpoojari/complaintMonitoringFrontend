@@ -32,12 +32,12 @@ const handlesubmit= async(e)=> {
     setLoading(true);
 
       try{
-        const response = await axios.post("API_URL/login",formData)
+        const response = await axios.post(`${API_URL}/login`, formData)
         setSuccess("Login successful");
        //
        localStorage.setItem("token", response.data.token);
 
-     window.location.href = "/dashboard";
+        navigate("/dashboard");
 
         setError("");
         console.log(response.data);

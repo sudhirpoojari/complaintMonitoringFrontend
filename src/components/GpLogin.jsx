@@ -26,7 +26,7 @@ const handlesubmit= async(e)=> {
     setLoading(true);
     try{ 
         console.log("GP login send:", formData);
-        const response = await axios.post("API_URL/gp/login", formData);
+        const response = await axios.post(`${API_URL}/gp/login`, formData);
         const data = response.data;
         console.log("GP login response:", data);
         
